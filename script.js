@@ -14,14 +14,14 @@ document.addEventListener('DOMContentLoaded', () => {
   if (banner) {
     if (!localStorage.getItem('cookieConsent')) {
       banner.hidden = false;
+      setTimeout(() => banner.classList.add('visible'), 300);
     }
-    acceptBtn.addEventListener('click', () => {
-      localStorage.setItem('cookieConsent', 'accepted');
-      banner.hidden = true;
-    });
-    declineBtn.addEventListener('click', () => {
-      localStorage.setItem('cookieConsent', 'declined');
-      banner.hidden = true;
-    });
+    const dismiss = (value) => {
+      localStorage.setItem('cookieConsent', value);
+      banner.classList.remove('visible');
+      banner.addEventListener('transitionend', () => { banner.hidden = true; }, { once: true });
+    };
+    acceptBtn.addEventListener('click', () => dismiss('accepted'));
+    declineBtn.addEventListener('click', () => dismiss('declined'));
   }
 });
