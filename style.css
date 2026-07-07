@@ -552,8 +552,29 @@ section { padding: 72px 0; }
 /* ---------- Responsive ---------- */
 
 @media (max-width: 860px) {
-  .hero .container { grid-template-columns: 1fr; }
-  .hero-photo { order: -1; max-width: 340px; margin: 0 auto; }
+  .hero .container { display: block; position: relative; }
+  .hero-photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+    border-radius: var(--radius);
+    overflow: hidden;
+    z-index: 0;
+  }
+  .hero-photo img {
+    height: 100%;
+    opacity: 0.28;
+    border-radius: var(--radius);
+    box-shadow: none;
+  }
+  .hero-text {
+    position: relative;
+    z-index: 1;
+    padding: 36px 24px;
+  }
   .modality-grid { grid-template-columns: repeat(2, 1fr); }
   .two-col { grid-template-columns: 1fr; }
   .card-list { grid-template-columns: 1fr; }
