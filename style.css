@@ -82,12 +82,29 @@ section { padding: 72px 0; }
 }
 
 .nav-links a {
+  position: relative;
   color: var(--text);
   font-weight: 600;
   font-size: 0.98rem;
+  transition: color 0.2s ease;
 }
 
 .nav-links a:hover { color: var(--primary); }
+
+.nav-links a.active {
+  color: var(--primary);
+}
+
+.nav-links a.active:not(.btn)::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -8px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--primary);
+}
 
 .btn {
   display: inline-block;
